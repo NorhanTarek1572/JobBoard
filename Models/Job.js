@@ -20,200 +20,140 @@ class Job {
             this.responsibility =responsibility
     }
    //========================================all getters======================================
-    getId() {
-        return this.id;
-    }
-    getTitle () {
-        return this.title ;
-    }
-    getJobType() {
-        return this.job_type ;
-    }
-    getExperience() {
-        return this.experience ;
-    }
-    getLocation() {
-        return this.location ;
-    }
-   
-    getImage() {
-        return this.image ;
-    }
-    getPublishedOn() {
-        return this.published_on;
-    }
-    getVacancy() {
-        return this.vacancy ;
-    }
-    getSalary() {
-        return this.salary ;
-    }
-    getOwner() {
-        return this.owner ;
-    }
-    getCategory() {
-        return this.category ;
-    }
-    getDeadline(){
-        return this.deadline ;
-    }
-    getQualifications(){
-         return this.qualifications
-        }
-    getResponsibility(){
-        return this.responsibility 
-    }
-
+    getId() { return this.id;}
+    getTitle () {return this.title ;}
+    getJobType() {return this.job_type ;}
+    getExperience() {return this.experience ;}
+    getLocation() {return this.location ;} 
+    getImage() {return this.image ;}
+    getPublishedOn() {return this.published_on;}
+    getVacancy() {return this.vacancy ;}
+    getSalary() {return this.salary ;}
+    getOwner() {return this.owner ;}
+    getCategory() { return this.category ;}
+    getDeadline(){return this.deadline ;}
+    getQualifications(){return this.qualifications; }
+    getResponsibility(){return this.responsibility }
     //=================================================== all setters ================================================
-    setTitle (value) {
-            this.title= value  ;
-    }
-    setJobType(value) {
-            this.job_type= value  ;
-    }
-    setExperience(value) {
-            this.experience= value  ;
-    }
-    setLocation(value) {
-            this.location= value  ;
-    }
-
-    setImage(value) {
-            this.image= value  ;
-    }
-    setPublishedOn(value) {
-            this.published_on= value ;
-    }
-    setVacancy(value) {
-            this.vacancy= value  ;
-    }
-    setSalary(value) {
-        this.salary= value  ;
-    }
-    setOwner(value) {
-            this.owner= value  ;
-    }
-    setCategory(value) {
-            this.category= value  ;
-    }
-    setDeadline(value){
-        this.deadline = value ; 
-    }
-    setQualifications(value){
-         this.qualifications = value ;
-        }
-    setResponsibility(value){
-        this.responsibility  = value ;
-    }
+    setTitle (value) {this.title= value  ;}
+    setJobType(value) {this.job_type= value  ;}
+    setExperience(value) {this.experience= value  ;}
+    setLocation(value) {this.location= value  ;}
+    setImage(value) {this.image= value  ;}
+    setPublishedOn(value) {this.published_on= value ;}
+    setVacancy(value) {this.vacancy= value  ;}
+    setSalary(value) {this.salary= value  ;}
+    setOwner(value) {this.owner= value  ;}
+    setCategory(value) {this.category= value  ;}
+    setDeadline(value){this.deadline = value ; }
+    setQualifications(value){this.qualifications = value ;}
+    setResponsibility(value){this.responsibility  = value ;}
 
   //=====================================CRUDS Operations on jobs ================================================
-  static query = util.promisify(connectDb.query).bind(connectDb);
-    
-    static async getAll(){
-       try {
-        const result = await this.query("select * from jobs") 
-       
-          return result
-       } catch (error) {
-            console.log("Can not get all jobs from DB  :  "+error ) 
-            
-       }
-        
-       
+    static query = util.promisify(connectDb.query).bind(connectDb);
+
+    static async getAll() {
+        try {
+            const result = await this.query("select * from jobs")
+
+            return result
+        } catch (error) {
+            console.log("Can not get all jobs from DB  :  " + error)
+
+        }
+
+
     }
-    static async get(id){
+    static async get(id) {
         try {
             const result = await this.query(`select * from jobs where id = ${id}`)
             return result
-      } catch (error) {
-           console.log("Can not get data from DB  :  "+error ) 
-      }
-      
-    } 
-    static async delete(id){
-        try {
-                const result  = await this.query(`DELETE FROM jobs WHERE  id = ${id};`) 
-        
-        // Check if the job was deleted successfully
-        if (result.affectedRows === 1) {
-            console.log('Job deleted successfully!');
-            
-            return true ;
-        } else {
-            console.error('Error deleting  job!');
-            return false ;
-        }
         } catch (error) {
-            console.log("Can not get data from DB  :  "+error ) 
-            
-        }   
-    }
-    static async update(id , job){
-        try {
-           const result = await this.query
-           (` UPDATE jobs SET title = \"${job.title}",experience = \"${job.experience}" ,job_type =\"${job.job_type}",location =\"${job.location}", published_on =\"${job.published_on}",deadline=\"${job.deadline}",salary = ${job.salary},responsibility= \"${job.responsibility}" ,owner =\"${job.owner}" , vacancy = \"${job.vacancy}" ,category =\"${job.category}" ,qualifications =\"${job.qualifications}" , image =\"${job.image}" ,category=\"${job.category}"  WHERE id = ${id}`);
+            console.log("Can not get data from DB  :  " + error)
+        }
 
-         
-         // const result = await this.query(` UPDATE jobs SET =${job}  where id = ${id}` )
-        // const result = await this.query(` UPDATE jobs SET = ? where id = ?` ,[ job , id ])
+    }
+    static async delete(id) {
+        try {
+            const result = await this.query(`DELETE FROM jobs WHERE  id = ${id};`)
+
+            // Check if the job was deleted successfully
+            if (result.affectedRows === 1) {
+                console.log('Job deleted successfully!');
+
+                return true;
+            } else {
+                console.error('Error deleting  job!');
+                return false;
+            }
+        } catch (error) {
+            console.log("Can not get data from DB  :  " + error)
+
+        }
+    }
+    static async update(id, job) {
+        try {
+            const result = await this.query
+                (` UPDATE jobs SET title = \"${job.title}",experience = \"${job.experience}" ,job_type =\"${job.job_type}",location =\"${job.location}", published_on =\"${job.published_on}",deadline=\"${job.deadline}",salary = ${job.salary},responsibility= \"${job.responsibility}" ,owner =\"${job.owner}" , vacancy = \"${job.vacancy}" ,category =\"${job.category}" ,qualifications =\"${job.qualifications}" , image =\"${job.image}" ,category=\"${job.category}"  WHERE id = ${id}`);
+
+
+            // const result = await this.query(` UPDATE jobs SET =${job}  where id = ${id}` )
+            // const result = await this.query(` UPDATE jobs SET = ? where id = ?` ,[ job , id ])
 
             if (result.affectedRows === 1) {
                 console.log('job updated successfully!');
-                return true ;
+                return true;
             } else {
                 console.error('Error updating  job!');
-                return false ;
+                return false;
             }
         } catch (error) {
-            console.log("Can not get data from DB  :  "+error ) 
-            
+            console.log("Can not get data from DB  :  " + error)
+
         }
-     
-       
-    }
-    static async addNew(job){
-        try {
-               //title,job_type,experience,location,owner,image,published_on,deadline,vacancy,salary,category,Qualifications,Responsibility
-        const result  = await this.query("INSERT INTO jobs set ?" , job) 
-        
-        // Check if the job was inserted successfully
-        if (result.affectedRows === 1) {
-            console.log('Job inserted successfully!');
-            return true ;
-        } else {
-            console.error('Error inserting job!');
-            return false ;
-        }
-        } catch (error) {
-            console.log("Can not get data from DB  addNew(job) :  "+error ) 
-            
-        }
-     
-    }
-    static async test(job){
-        try {
-               //title,job_type,experience,location,owner,image,published_on,deadline,vacancy,salary,category,Qualifications,Responsibility
-        const result  = await this.query("INSERT INTO test set ?" , job) 
-        
-        // Check if the job was inserted successfully
-        if (result.affectedRows === 1) {
-            console.log('Job inserted successfully!');
-            return true ;
-        } else {
-            console.error('Error inserting job!');
-            return false ;
-        }
-        } catch (error) {
-            console.log("Can not get data from DB  addNew(job) :  "+error ) 
-            
-        }
-     
-    }
 
 
-    //==========================================
+    }
+    static async addNew(job) {
+        try {
+            //title,job_type,experience,location,owner,image,published_on,deadline,vacancy,salary,category,Qualifications,Responsibility
+            const result = await this.query("INSERT INTO jobs set ?", job)
+
+            // Check if the job was inserted successfully
+            if (result.affectedRows === 1) {
+                console.log('Job inserted successfully!');
+                return true;
+            } else {
+                console.error('Error inserting job!');
+                return false;
+            }
+        } catch (error) {
+            console.log("Can not get data from DB  addNew(job) :  " + error)
+
+        }
+
+    }
+    static async test(job) {
+        try {
+            //title,job_type,experience,location,owner,image,published_on,deadline,vacancy,salary,category,Qualifications,Responsibility
+            const result = await this.query("INSERT INTO test set ?", job)
+
+            // Check if the job was inserted successfully
+            if (result.affectedRows === 1) {
+                console.log('Job inserted successfully!');
+                return true;
+            } else {
+                console.error('Error inserting job!');
+                return false;
+            }
+        } catch (error) {
+            console.log("Can not get data from DB  addNew(job) :  " + error)
+
+        }
+
+    }
     static async isExist(id) {
-       
+
         const job = await this.query("select * from jobs  where id = ? ", [id]);
         if (job[0]) {
             return true;

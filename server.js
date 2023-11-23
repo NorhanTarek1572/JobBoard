@@ -10,7 +10,7 @@ const auth_router = require('./Routers/auth_router');
 const user_router = require('./Routers/user_router')
 const application_router = require('./Routers/application_router')
 const category_router = require('./Routers/category_router')
-const contactUs_router = require('./Routers/contactUs_router') 
+
 
 
 
@@ -38,7 +38,6 @@ app.use( '/',auth_router);
 app.use('/user' , user_router);
 app.use('/application' , application_router);
 app.use('/category' , category_router)
-app.use('/' , contactUs_router)
 
 
 //app.get('/contact' , (req , res )=>{res.render('contact')})
