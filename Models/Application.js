@@ -87,13 +87,13 @@ class Application {
 
     static async getUserApplications(userId) {
         // get all user_appications for user  that he applied for 
-        try {  
+        try {
             const result = await this.query(`select * from applications  WHERE  userID = ${userId} `)
             return result
             // if (result.length =! 0) {
             //     return result
             // }
-            
+
         } catch (error) {
             console.log(error)
         }
@@ -143,7 +143,7 @@ class Application {
         }
 
     }
-    static async getApplicationId(userId , jobId){
+    static async getApplicationId(userId, jobId) {
         try {
             const result = await this.query(`select id from applications  WHERE  userID = ${userId} && jobID=${jobId} `)
             return result
@@ -151,7 +151,7 @@ class Application {
             console.log(error)
         }
     }
-   
+
 
 
 
